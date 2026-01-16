@@ -1,6 +1,6 @@
 # Exercise 01: World Database SQL Practice
 
-- Name:
+- Name: Karli Dean
 - Course: Database for Analytics
 - Module: 1
 - Database Used: World Database
@@ -27,7 +27,9 @@
 Why were these data types selected?
 
 ### Answer
-_Write your explanation here._
+The data type selected for `country.Population` was `int`. This is because the data in each record is a number without a decimal point, each number being an integer. These are whole counts of people, and you cannot have a fraction of a person.\
+\
+The data type for `country.LifeExpectancy` was `decimal(3,1)`. This is a number value with 1 decimal point. This data type was chosen to help us understand that one's life can be cut short at fractions of years, so our expectancies can be at fractions of years as well. Having these records at 1 decimal point makes it easier to comprehend as we analyze the data. 
 
 ### Screenshot
 _Show the table structure or DESCRIBE output._
@@ -36,7 +38,7 @@ _Show the table structure or DESCRIBE output._
 DESCRIBE country;
 ```
 
-![Q1 Screenshot](screenshots/q1_datatypes.png)
+![Q1 Screenshot](screenshots/exercise01.md/q1_datatypes.png)
 
 ---
 
