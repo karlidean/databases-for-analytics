@@ -38,7 +38,7 @@ _Show the table structure or DESCRIBE output._
 DESCRIBE country;
 ```
 
-![Q1 Screenshot](screenshots/exercise01.md/q1_datatypes.png)
+![Q1 Screenshot](screenshots/exercise01/q1_datatypes.png)
 
 ---
 
@@ -48,7 +48,7 @@ DESCRIBE country;
 Why do you think this data type was selected?
 
 ### Answer
-_Write your explanation here._
+This data has the type of `smallint`. This is a type that allows NULL values and small strings of numbers (like years). Since this data is recording the year the country gained independence, this data type makes sense.
 
 ### Screenshot
 
@@ -56,7 +56,7 @@ _Write your explanation here._
 DESCRIBE country;
 ```
 
-![Q2 Screenshot](screenshots/q2_indepyear.png)
+![Q2 Screenshot](screenshots/exercise01/q2_indepyear.png)
 
 ---
 
@@ -66,7 +66,7 @@ DESCRIBE country;
 Explain why your proposed data type might be better in some situations.
 
 ### Answer
-_Write your explanation here._
+This data could also use the `YEAR` data type to make the table also recognize that we are recording years. It is a clean way to analyze the data directly from the datatype table source and makes understanding the table much quicker.
 
 ---
 
