@@ -84,7 +84,7 @@ ORDER BY Name;
 
 ### Screenshot
 
-![Q4 Screenshot](screenshots/q4_cities_sorted.png)
+![Q4 Screenshot](screenshots/exercise01/q4_cities_sorted.png)
 
 ---
 
@@ -102,7 +102,7 @@ ORDER BY GovernmentForm;
 
 ### Screenshot
 
-![Q5 Screenshot](screenshots/q5_government_forms.png)
+![Q5 Screenshot](screenshots/exercise01/q5_government_forms.png)
 
 ---
 
@@ -173,7 +173,7 @@ VALUES ('NAR', 'Narnia', 'Europe', 'Fantasy', 1000000);
 
 ### Screenshot
 
-![Q9 Screenshot](screenshots/q9_insert_narnia.png)
+![Q9 Screenshot](screenshots/exercise01/q9_insert_narnia.png)
 
 ---
 
