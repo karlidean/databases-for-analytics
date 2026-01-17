@@ -120,7 +120,7 @@ WHERE Continent = 'Oceania';
 
 ### Screenshot
 
-![Q6 Screenshot](screenshots/q6_oceania.png)
+![Q6 Screenshot](screenshots/exercise01/q6_oceania.png)
 
 ---
 
@@ -137,7 +137,7 @@ FROM city;
 
 ### Screenshot
 
-![Q7 Screenshot](screenshots/q7_city_countrycode.png)
+![Q7 Screenshot](screenshots/exercise01/q7_city_countrycode.png)
 
 ---
 
@@ -155,7 +155,7 @@ WHERE Name = 'Nashville-Davidson';
 
 ### Screenshot
 
-![Q8 Screenshot](screenshots/q8_update_city.png)
+![Q8 Screenshot](screenshots/exercise01/q8_update_city.png)
 
 ---
 
