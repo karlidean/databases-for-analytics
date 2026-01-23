@@ -211,12 +211,17 @@ Using the World database, write the SQL command to **find cities where the distr
 ### SQL
 
 ```sql
--- Your SQL here
+SELECT id, name, countrycode, district, population
+FROM city
+WHERE district IS NULL
+   OR TRIM(district) = ''
+   OR district LIKE '-%'
+ORDER BY countrycode, name;
 ```
 
 ### Screenshot
 
-![Q10 Screenshot](screenshots/q10_missing_districts.png)
+![Q10 Screenshot](screenshots/exercise02/q10_missing_districts.png)
 
 ---
 
