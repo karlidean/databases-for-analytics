@@ -171,12 +171,16 @@ Be sure to **sort by language name**.
 ### SQL
 
 ```sql
--- Your SQL here
+SELECT cl.language,
+       COUNT(DISTINCT cl.countrycode) AS countries_spoken_in
+FROM countrylanguage cl
+GROUP BY cl.language
+ORDER BY cl.language;
 ```
 
 ### Screenshot
 
-![Q8 Screenshot](screenshots/q8_language_country_count.png)
+![Q8 Screenshot](screenshots/exercise02/q8_language_country_count.png)
 
 ---
 
