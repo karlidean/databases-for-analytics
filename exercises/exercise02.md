@@ -234,9 +234,19 @@ Using the World database, write the SQL command to **calculate the percentage of
 ### SQL
 
 ```sql
--- Your SQL here
+SELECT
+  ROUND(
+    100.0 * SUM(
+      CASE
+        WHEN district IS NULL OR TRIM(district) = '' OR district LIKE '-%'
+        THEN 1 ELSE 0
+      END
+    ) / COUNT(*),
+    2
+  ) AS pct_missing_district
+FROM city;
 ```
 
 ### Screenshot
 
-![Q11 Screenshot](screenshots/q11_missing_district_percentage.png)
+![Q11 Screenshot](screenshots/exercise02/q11_missing_district_percentage.png)
