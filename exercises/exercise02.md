@@ -65,12 +65,18 @@ Using the World database, write the SQL command to **display each country name a
 ### SQL
 
 ```sql
--- Your SQL here
+SELECT c.name AS country_name,
+       cl.language AS official_language
+FROM country c
+JOIN countrylanguage cl
+  ON c.code = cl.countrycode
+WHERE cl.isofficial = 'T'
+ORDER BY c.name, cl.language;
 ```
 
 ### Screenshot
 
-![Q3 Screenshot](screenshots/q3_official_languages.png)
+![Q3 Screenshot](screenshots/exercise02/q3_official_languages.png)
 
 ---
 
