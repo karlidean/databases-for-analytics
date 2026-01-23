@@ -249,16 +249,9 @@ Using the World database, write the SQL command to **calculate the percentage of
 
 ```sql
 SELECT
-  ROUND(
-    100.0 * SUM(
-      CASE
-        WHEN district IS NULL OR TRIM(district) = '' OR district LIKE '-%'
-        THEN 1 ELSE 0
-      END
-    ) / COUNT(*),
-    2
-  ) AS pct_missing_district
-FROM city;
+ROUND(
+	AVG((district = ''OR district = '–')::INT)*100,2) AS "percent_of missing_values"
+FROM city
 ```
 
 ### Screenshot
