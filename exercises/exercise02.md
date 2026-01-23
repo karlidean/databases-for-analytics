@@ -94,7 +94,7 @@ ON country.code = countrylanguage.countrycode;
 **In your own words**, describe what data the **second query returns that the first query does not**.
 
 ### Answer
-_Write your explanation here._
+The first query does an INNER join function, so it's only returning countries that have matching rows in the countrylanguage field. The second query does a LEFT OUTER join function, so it's going to return all countries, including those that don't have matching language rows. It allows the countries that are NULL in their countrylanguage field as well.
 
 ---
 
@@ -106,12 +106,14 @@ Do **not** repeat any form of government more than once.
 ### SQL
 
 ```sql
--- Your SQL here
+-SELECT DISTINCT governmentform
+FROM country
+ORDER BY governmentform;
 ```
 
 ### Screenshot
 
-![Q5 Screenshot](screenshots/q5_government_forms.png)
+![Q5 Screenshot](screenshots/exercise02/q5_government_forms.png)
 
 ---
 
