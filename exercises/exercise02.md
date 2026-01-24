@@ -250,7 +250,7 @@ Using the World database, write the SQL command to **calculate the percentage of
 ```sql
 SELECT
 ROUND(
-	AVG((district = ''OR district = '–')::INT)*100,2) AS "percent_of missing_values"
+	AVG((district = '%'OR district = '–')::INT)*100,2) AS "percent_of_missing_values"
 FROM city
 ```
 
