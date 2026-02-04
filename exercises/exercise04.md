@@ -1,8 +1,8 @@
 # Exercise 04: Advanced SQL, Jupyter, and Visualization
 
-- Name:
+- Name: Karli Dean
 - Course: Database for Analytics
-- Module:
+- Module: 4
 - Database Used: World Database
 - Tools Used: PostgreSQL, SQLAlchemy, Pandas, Jupyter Notebooks
 
@@ -31,12 +31,21 @@ Considering the World database, write a SQL statement that will **display the na
 ### SQL
 
 ```sql
--- Your SQL here
+SELECT
+    c.name AS country,
+    COUNT(*) AS official_language_count
+FROM country c
+JOIN countrylanguage cl
+    ON cl.countrycode = c.code
+WHERE cl.isofficial = 'T'
+GROUP BY c.name
+HAVING COUNT(*) > 2
+ORDER BY official_language_count DESC, c.name;
 ```
 
 ### Screenshot
 
-![Q1 Screenshot](screenshots/q1_official_language_counts.png)
+![Q1 Screenshot](screenshots/exercise04/q1_official_language_counts.png)
 
 ---
 
@@ -49,12 +58,27 @@ After the `create_engine` command is executed, **what are the three statements r
 ### Python Code
 
 ```python
-# Your three Python statements here
+sql = """
+SELECT
+    c.name AS country,
+    COUNT(*) AS official_language_count
+FROM country c
+JOIN countrylanguage cl
+    ON cl.countrycode = c.code
+WHERE cl.isofficial = 'T'
+GROUP BY c.name
+HAVING COUNT(*) > 2
+ORDER BY official_language_count DESC, c.name;
+"""
+
+df = pd.read_sql_query(sql, engine)
+
+df
 ```
 
 ### Screenshot
 
-![Q2 Screenshot](screenshots/q2_jupyter_query_results.png)
+![Q2 Screenshot](screenshots/exercise04/q2_jupyter_query_results.png)
 
 ---
 
@@ -69,7 +93,22 @@ Using **Jupyter Notebooks**, write the Python code needed to produce the followi
 ### Python Code
 
 ```python
-# Your Python code here
+# Graph Sizing
+plt.figure(figsize=(10, 6))
+
+# Graph Labeling
+plt.bar(df["country"], df["official_language_count"])
+plt.xlabel("Country Name")
+plt.ylabel("Number of Official Languages")
+plt.title("Countries with More Than Two Official Languages (World DB)")
+plt.xticks(rotation=90)
+plt.legend()
+
+# Graph Spacing
+plt.tight_layout()
+
+# Show the Graph
+plt.show()
 ```
 
 ### Screenshot
