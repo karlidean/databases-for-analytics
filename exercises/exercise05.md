@@ -42,7 +42,11 @@ year
 ### SQL
 
 ```sql
--- Your SQL here
+SELECT DISTINCT
+  EXTRACT(YEAR FROM sent_date)::int AS year
+FROM emails
+WHERE sent_date IS NOT NULL
+ORDER BY year;
 ```
 
 ### Screenshot
@@ -65,7 +69,13 @@ count   year
 ### SQL
 
 ```sql
--- Your SQL here
+SELECT
+  COUNT(*) AS count,
+  EXTRACT(YEAR FROM sent_date)::int AS year
+FROM emails
+WHERE sent_date IS NOT NULL
+GROUP BY year
+ORDER BY year;
 ```
 
 ### Screenshot
@@ -86,7 +96,14 @@ Only include emails that contain **both** a sent date and an opened date.
 ### SQL
 
 ```sql
--- Your SQL here
+SELECT
+  sent_date,
+  opened_date,
+  opened_date - sent_date AS interval
+FROM emails
+WHERE sent_date IS NOT NULL
+  AND opened_date IS NOT NULL
+ORDER BY sent_date;
 ```
 
 ### Screenshot
@@ -102,7 +119,15 @@ Using the `sqlda` database, write the SQL needed to show emails that contain an 
 ### SQL
 
 ```sql
--- Your SQL here
+SELECT
+  email_id,
+  sent_date,
+  opened_date
+FROM emails
+WHERE sent_date IS NOT NULL
+  AND opened_date IS NOT NULL
+  AND opened_date < sent_date
+ORDER BY sent_date;
 ```
 
 ### Screenshot
@@ -119,7 +144,7 @@ After looking at the data, **why is this the case?**
 
 ### Answer
 
-_Write your explanation here._
+This happens because the opened_date values are not reliable “real open timestamps.” In the sample dataset, many opened_date entries appear to be generated/loaded incorrectly (common causes: timestamp fields imported with the wrong time zone, a swapped/incorrect source column, or placeholder/default “opened” dates that don’t reflect actual user behavior). As a result, some rows end up with an opened_date earlier than sent_date, which is a data quality issue rather than a real-world possibility.
 
 ### Screenshot (if requested by instructor)
 
@@ -160,7 +185,13 @@ CREATE TEMP TABLE customer_dealership_distance AS (
 
 ### Answer
 
-_Write your explanation here._
+This code builds two temporary tables containing geographic points (longitude/latitude) for customers and dealerships, then calculates the distance between every customer and every dealership.
+
+customer_points: stores each customer’s customer_id and a Postgres point(longitude, latitude) value, but only for customers with non-null coordinates.
+
+dealership_points: stores each dealership’s dealership_id and its point(longitude, latitude).
+
+customer_dealership_distance: cross joins customers to dealerships (so every customer is paired with every dealership) and uses the <@> operator to compute the distance between the two points, saving it as distance.
 
 ---
 
@@ -177,7 +208,12 @@ For example - dealership 1 is below:
 ### SQL
 
 ```sql
--- Your SQL here
+SELECT
+  dealership_id,
+  array_agg(last_name || ',' || first_name ORDER BY last_name, first_name) AS salespeople
+FROM salespeople
+GROUP BY dealership_id
+ORDER BY dealership_id;
 ```
 
 ### Screenshot
@@ -202,7 +238,16 @@ Reference image:
 ### SQL
 
 ```sql
--- Your SQL here
+SELECT
+  d.state,
+  d.dealership_id,
+  array_agg(s.last_name || ',' || s.first_name ORDER BY s.last_name, s.first_name) AS salespeople,
+  COUNT(*) AS salesperson_count
+FROM dealerships d
+JOIN salespeople s
+  ON s.dealership_id = d.dealership_id
+GROUP BY d.state, d.dealership_id
+ORDER BY d.state, d.dealership_id;
 ```
 
 ### Screenshot
@@ -218,7 +263,8 @@ Using the `sqlda` database, write the SQL needed to convert the **customers** ta
 ### SQL
 
 ```sql
--- Your SQL here
+SELECT to_jsonb(c) AS customer_json
+FROM customers c;
 ```
 
 ### Screenshot
@@ -244,7 +290,19 @@ Reference image:
 ### SQL
 
 ```sql
--- Your SQL here
+SELECT to_jsonb(t) AS result_json
+FROM (
+  SELECT
+    d.state,
+    d.dealership_id,
+    array_agg(s.last_name || ',' || s.first_name ORDER BY s.last_name, s.first_name) AS salespeople,
+    COUNT(*) AS salesperson_count
+  FROM dealerships d
+  JOIN salespeople s
+    ON s.dealership_id = d.dealership_id
+  GROUP BY d.state, d.dealership_id
+  ORDER BY d.state, d.dealership_id
+) t;
 ```
 
 ### Screenshot
