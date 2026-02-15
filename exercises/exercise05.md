@@ -51,7 +51,7 @@ ORDER BY year;
 
 ### Screenshot
 
-![Q1 Screenshot](screenshots/q1_email_years.png)
+![Q1 Screenshot](screenshots/exercise05/q1_email_years.png)
 
 ---
 
@@ -80,7 +80,7 @@ ORDER BY year;
 
 ### Screenshot
 
-![Q2 Screenshot](screenshots/q2_message_count_by_year.png)
+![Q2 Screenshot](screenshots/exercise05/q2_message_count_by_year.png)
 
 ---
 
@@ -108,7 +108,7 @@ ORDER BY sent_date;
 
 ### Screenshot
 
-![Q3 Screenshot](screenshots/q3_sent_opened_interval.png)
+![Q3 Screenshot](screenshots/exercise05/q3_sent_opened_interval.png)
 
 ---
 
@@ -132,7 +132,7 @@ ORDER BY sent_date;
 
 ### Screenshot
 
-![Q4 Screenshot](screenshots/q4_opened_before_sent.png)
+![Q4 Screenshot](screenshots/exercise05/q4_opened_before_sent.png)
 
 ---
 
@@ -218,7 +218,7 @@ ORDER BY dealership_id;
 
 ### Screenshot
 
-![Q7 Screenshot](screenshots/q7_salespeople_array_by_dealership.png)
+![Q7 Screenshot](screenshots/exercise05/q7_salespeople_array_by_dealership.png)
 
 ---
 
@@ -252,7 +252,7 @@ ORDER BY d.state, d.dealership_id;
 
 ### Screenshot
 
-![Q8 Screenshot](screenshots/q8_salespeople_array_state_count.png)
+![Q8 Screenshot](screenshots/exercise05/q8_salespeople_array_state_count.png)
 
 ---
 
@@ -269,7 +269,7 @@ FROM customers c;
 
 ### Screenshot
 
-![Q9 Screenshot](screenshots/q9_customers_to_json.png)
+![Q9 Screenshot](screenshots/exercise05/q9_customers_to_json.png)
 
 ---
 
@@ -307,4 +307,4 @@ FROM (
 
 ### Screenshot
 
-![Q10 Screenshot](screenshots/q10_salespeople_array_to_json.png)
+![Q10 Screenshot](screenshots/exercise05/q10_salespeople_array_to_json.png)
