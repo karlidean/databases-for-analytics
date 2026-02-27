@@ -169,3 +169,71 @@ SELECT *
 FROM raw.game_typed
 WHERE venue ILIKE '%United Center%';
 ```
+![United Center Screenshot](screenshots_final/gamesatUC.png)
+
+### All Plays in Overtime
+
+```sql
+SELECT *
+FROM raw.game_plays_clean_typed
+WHERE periodtype = 'OVERTIME';
+```
+![Overtime Screenshot](screenshots_final/playsinOT.png)
+
+### All Players Taller Than 190cm
+
+```sql
+SELECT *
+FROM raw.player_info_typed
+WHERE height_cm > 190;
+```
+![Players Over 190cm Screenshot](screenshots_final/tallplayers.png)
+
+## 5. Aggregate Function Example
+
+### Highest Average Goals per Game per Season
+
+```sql
+SELECT
+  season,
+  ROUND(AVG(home_goals + away_goals), 2) AS avg_goals_per_game
+FROM raw.game_typed
+GROUP BY season
+ORDER BY avg_goals_per_game DESC;
+```
+![Highest Average Goals per Season Screenshot](screenshots_final/highavggoalszn.png)
+
+## 6. JOIN Example
+
+### Total Events/Actions per Game
+
+```sql
+SELECT
+  g.game_id,
+  g.season,
+  g.home_goals,
+  g.away_goals,
+  COUNT(gp.play_id) AS total_events
+FROM raw.game_typed g
+JOIN raw.game_plays_clean_typed gp
+  ON g.game_id = gp.game_id
+GROUP BY g.game_id, g.season, g.home_goals, g.away_goals
+ORDER BY total_events DESC
+LIMIT 20;
+```
+![Total Events per Game Screenshot](screenshots_final/eventpergame.png)
+
+## 7. Aggregates and JOINs
+
+### The "Chaos Index"
+
+```sql
+SELECT
+  gp.event,
+  COUNT(*) AS event_count
+FROM raw.game_plays_clean_typed gp
+WHERE gp.game_id = 2019030121
+GROUP BY gp.event
+ORDER BY event_count DESC;
+```
+![Chaos Index Screenshot](screenshots_final/chaosindex.png)
