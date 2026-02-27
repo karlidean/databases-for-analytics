@@ -157,12 +157,13 @@ These issues were resolved using schema-qualified queries and controlled table r
 
 ---
 
-The table of data types is now as follows:
+The table of data types is now as follows:\
 ![Data Types Screenshot](screenshots_final/datatypes.png)
 
 ## 4. SELECT Query Examples
 
 ### All Games Held at United Center
+This query demonstrates text filtering.
 
 ```sql
 SELECT *
@@ -172,6 +173,7 @@ WHERE venue ILIKE '%United Center%';
 ![United Center Screenshot](screenshots_final/gamesatUC.png)
 
 ### All Plays in Overtime
+This query demonstrates event filtering by period type.
 
 ```sql
 SELECT *
@@ -181,6 +183,7 @@ WHERE periodtype = 'OVERTIME';
 ![Overtime Screenshot](screenshots_final/playsinOT.png)
 
 ### All Players Taller Than 190cm
+This query demonstrates numeric filtering.
 
 ```sql
 SELECT *
@@ -192,6 +195,10 @@ WHERE height_cm > 190;
 ## 5. Aggregate Function Example
 
 ### Highest Average Goals per Game per Season
+This query determines that:
+- The 2005-2006 season had the highest scoring average (~6.2 goals per game)
+- The next closest season to this (and the only one with over 6 goals per season) was the 2018-2019 season\
+This query demonstrates grouping and aggregation across seasons.
 
 ```sql
 SELECT
@@ -206,6 +213,9 @@ ORDER BY avg_goals_per_game DESC;
 ## 6. JOIN Example
 
 ### Total Events/Actions per Game
+This query joins game-level and play-level data to determine total recorded events per game.
+- Recent seasons show significantly higher event counts compared to older seasons. Is this due to better reporting or more physicality?
+- A game in the 2019-2020 season reported over 3,000 events.
 
 ```sql
 SELECT
@@ -226,6 +236,9 @@ LIMIT 20;
 ## 7. Aggregates and JOINs
 
 ### The "Chaos Index"
+This query dives into the high-event game, grouping the numbers of events.
+- This game had 292 shots, 276 faceoffs, and only 10 goals.
+- Despite high volumes of events, scoring was moderate. This seems like a very fun game to have watched.
 
 ```sql
 SELECT
@@ -237,3 +250,10 @@ GROUP BY gp.event
 ORDER BY event_count DESC;
 ```
 ![Chaos Index Screenshot](screenshots_final/chaosindex.png)
+
+## 8. Conclusion
+This project demonstrates:
+- Successful loading and structuring of large-scale relational data
+- Schema refinement and typing
+- Querying with SELECT, filtering, JOIN, GROUP BY, and aggregation
+- Analytical exploration of NHL event-level and season-level trends
